@@ -1,0 +1,10 @@
+1.初始化
+repo init -u url [options]
+
+2.同步
+repo sync
+
+3.建立分支
+repo start [branch] --all
+
+參考https://source.android.com/setup/develop/repo
