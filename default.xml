@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <remote name="origin" fetch="https://github.com/apotatostory/"></remote>
+
+    <default revision="master" remote="origin" sync_j ="4"></default>
+
+    <project name="Hello-World"></project>
+    <project name="spring-cloud"></project>
+    <project name="Demo"></project>
+    <project name="pic-scanner"></project>
+    <project name="VoiceTube_F2E"></project>
+    <project name="Resume_ReactJs"></project>
+    <project name="typescript-demo"></project>
+</manifest>
