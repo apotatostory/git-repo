@@ -8,3 +8,6 @@ repo sync
 repo start [branch] --all
 
 參考https://source.android.com/setup/develop/repo
+
+
+tr
