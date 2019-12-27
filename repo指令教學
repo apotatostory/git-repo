@@ -1,3 +1,5 @@
+前置工作:先安裝python,把repo這檔案設定環境變數
+
 1.初始化
 repo init -u url [options]
 
@@ -8,6 +10,3 @@ repo sync
 repo start [branch] --all
 
 參考https://source.android.com/setup/develop/repo
-
-
-tr
