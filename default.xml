@@ -10,9 +10,15 @@
     <project name="VoiceTube_F2E"></project>
     <project name="Resume_ReactJs"></project>
     <project name="typescript-demo"></project>
-    <!-- <project name="spring-cloud"></project> -->
+    <project name="spring-cloud--all"></project>
 
     <!-- spring-cloud -->
-    <project name="spring-boot-mongoDB" path="spring-cloud/spring-boot-mongoDB" group="spring-cloud, default"></project>
+    <project name="spring-boot-eureka-client" path="spring-cloud/spring-boot-eureka-client" group="spring-cloud"></project>
+    <project name="spring-boot-eureka-server" path="spring-cloud/spring-boot-eureka-server" group="spring-cloud"></project>
+    <project name="spring-boot-feign-client" path="spring-cloud/spring-boot-feign-client" group="spring-cloud"></project>
+    <project name="spring-boot-front-end" path="spring-cloud/spring-boot-front-end" group="spring-cloud"></project>
+    <project name="spring-boot-mongoDB" path="spring-cloud/spring-boot-mongoDB" group="spring-cloud"></project>
+    <project name="spring-boot-service-ribbon" path="spring-cloud/spring-boot-service-ribbon" group="spring-cloud"></project>
+    <project name="spring-boot-service-zuul" path="spring-cloud/spring-boot-service-zuul" group="spring-cloud"></project>
 
 </manifest>
