@@ -29,8 +29,7 @@ name ：git 的名称，用于生成git url。URL格式是：${remote fetch}/${p
 path ：clone到本地的git的工作目录，如果没有配置的话，跟name一样
 remote ：定义remote name，如果没有定义的话就用default中定义的remote name
 revision ：指定需要获取的git提交点，可以定义成固定的branch，或者是明确的commit 哈希值
-groups ：列出project所属的组，以空格或者逗号分隔多个组名。所有的project都自动属于"all"组。每一个project自动属于
-name:'name' 和path:'path'组。例如<project name="monkeys" path="barrel-of"/>，它自动属于default, name:monkeys, and path:barrel-of组。如果一个project属于notdefault组，则，repo sync时不会下载
+groups ：列出project所属的组，以空格或者逗号分隔多个组名。所有的project都自动属于"all"组。每一个project自动属于name:'name' 和path:'path'组。例如<project name="monkeys" path="barrel-of"/>，它自动属于default, name:monkeys, and path:barrel-of组。如果一个project属于notdefault组，则，repo sync时不会下载
 sync_c ：如果设置为true，则只同步指定的分支(revision 属性指定)，而不是所有的ref内容。
 sync_s ： 如果设置为true，则会同步git的子项目
 upstream ：在哪个git分支可以找到一个SHA1。用于同步revision锁定的manifest(-c 模式)。该模式可以避免同步整个ref空间
