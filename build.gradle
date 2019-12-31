@@ -1,0 +1,191 @@
+
+ 
+/*
+ * ====================================================================
+ * Customize Tasks - Non Project Related
+ * ====================================================================
+ */	
+ 
+ 	
+ 	// TODO Be Plugin
+ 	import org.apache.tools.ant.filters.ReplaceTokens
+ 	
+ 	
+ 	def String sourceFolder = ""
+ 	def String targetFolder = ""
+ 	
+ 	def String sourceMainFolder = ""
+ 	def String sourceTestFolder = ""
+ 	def String targetMainFolder = ""
+ 	def String targetTestFolder = ""
+ 	
+ 	def String sourceTaskMainFolder = ""
+ 	def String sourceMsgMainFolder = ""
+ 	def String targetTaskFolder = ""
+ 	def String targetMsgFolder = ""
+ 	def String targetTaskMainFolder = ""
+ 	def String targetMsgMainFolder = ""
+ 	
+ 	// init building for channel project
+ 	task initBuildChannelProject {
+ 		doLast{
+ 			sourceFolder = "project-template/channel"
+ 			targetFolder = "../channel/${projectName}-channel/" 
+ 			
+ 			sourceMainFolder = "../channel/${projectName}-channel/src/main/java/com/megabank/tw/channel/sample"
+ 			sourceTestFolder = "../channel/${projectName}-channel/src/test/java/com/megabank/tw/channel/sample"
+ 			targetMainFolder = "../channel/${projectName}-channel/src/main/java/com/megabank/tw/channel/${projectName}${channelFunctionId}"
+ 			targetTestFolder = "../channel/${projectName}-channel/src/test/java/com/megabank/tw/channel/${projectName}${channelFunctionId}"
+ 			
+ 		}
+ 	}
+ 	 
+ 	task initAddChannelTaskProject {
+ 		doLast{
+ 			sourceFolder = "project-template/channel"
+ 			targetTaskFolder = "../channel/${projectName}-channel/src/main/java/com/megabank/tw/channel/${projectName}${channelFunctionId}/task" 
+ 			targetMsgFolder = "../channel/${projectName}-channel/src/main/java/com/megabank/tw/channel/${projectName}${channelFunctionId}/msg"
+ 			
+ 			sourceTaskMainFolder = "project-template/channel/src/main/java/com/megabank/tw/channel/sample/task"
+ 			sourceMsgMainFolder = "project-template/channel/src/main/java/com/megabank/tw/channel/sample/msg"
+ 			
+ 			targetTaskMainFolder = "../channel/${projectName}-channel/src/main/java/com/megabank/tw/channel/${projectName}${channelFunctionId}/task"
+ 			targetMsgMainFolder = "../channel/${projectName}-channel/src/main/java/com/megabank/tw/channel/${projectName}${channelFunctionId}/msg"
+ 		}
+ 	}
+ 	
+	// gradle -q addChannelTask -PprojectName=fco -PchannelFunctionId=010001 -PchannelPageId=Home
+	task addChannelTask(dependsOn: 'initAddChannelTaskProject' ) {
+		
+		doLast{
+			copy {
+				//from ('project-template/channel'){
+				from (sourceTaskMainFolder){
+				}
+				//into "channel/${projectName}-channel/"
+				into targetTaskFolder
+				
+ 				
+				// replace FileContent
+				filter(ReplaceTokens, tokens: [Project: projectName, ProjectCapitalize: projectName.capitalize(),channelFunctionId: channelFunctionId, channelPageId: channelPageId, channelPageIdLowerCase: channelPageId.toLowerCase() ])
+			
+				// replace FileName
+				rename { String fileName ->
+					if (fileName.startsWith('ProjectFunction')){
+						fileName.replace('ProjectFunction',"${projectName}".capitalize()+"${channelFunctionId}").replace('Page', "${channelPageId}")
+					}
+				}
+				// replace FileName
+				rename { String fileName ->
+
+					if (fileName.startsWith('Sample')){
+						fileName.replace('Sample',"${projectName}".capitalize())
+					}
+				}
+			}
+ 			copy {
+				//from ('project-template/channel'){
+				from (sourceMsgMainFolder){
+				}
+				//into "channel/${projectName}-channel/"
+				into targetMsgFolder
+				
+ 				
+				// replace FileContent
+				filter(ReplaceTokens, tokens: [Project: projectName, ProjectCapitalize: projectName.capitalize(),channelFunctionId: channelFunctionId, channelPageId: channelPageId, channelPageIdLowerCase: channelPageId.toLowerCase() ])
+			
+				// replace FileName
+				rename { String fileName ->
+					if (fileName.startsWith('ProjectFunction')){
+						fileName.replace('ProjectFunction',"${projectName}".capitalize()+"${channelFunctionId}").replace('Page', "${channelPageId}")
+					}
+				}
+				// replace FileName
+				rename { String fileName ->
+
+					if (fileName.startsWith('Sample')){
+						fileName.replace('Sample',"${projectName}".capitalize())
+					}
+				}
+			} 			
+ 		}
+ 	}
+ 	
+	//  gradle -q buildChannelProject -PprojectName=fln -PchannelFunctionId=01001 -PchannelPageId=Home -Pport=50007
+	task buildChannelProject (dependsOn: 'initBuildChannelProject') {
+		doLast{
+			copy {
+				from (sourceFolder){
+					//exclude '**/SampleChannelApplication.java'
+				}
+				into targetFolder
+				
+				// replace FileContent
+				filter(ReplaceTokens, tokens: [Project: projectName, ProjectCapitalize: projectName.capitalize(), channelFunctionId: channelFunctionId, channelPageId: channelPageId, channelPageIdLowerCase : channelPageId.toLowerCase(), Port: port ])
+				
+ 				// replace FileName
+				rename { String fileName ->
+					if (fileName.startsWith('ProjectFunction')){
+						fileName.replace('ProjectFunction',"${projectName}".capitalize()+"${channelFunctionId}").replace('Page', "${channelPageId}")
+					}					
+				}
+				
+				rename { String fileName ->
+					if (fileName.startsWith('Sample')){
+						fileName.replace('Sample',"${projectName}".capitalize())
+					}
+				}
+			}
+			
+			// move folder to correct package
+ 			file(sourceMainFolder).renameTo(file(targetMainFolder))
+			file(sourceTestFolder).renameTo(file(targetTestFolder))
+ 		}
+	}
+ 	
+ 	
+ 	
+ 	
+ 	// init building for channel project
+ 	task initBuildBusinessProject {
+ 	
+ 		doLast{
+ 			sourceFolder = "project-template/business"
+ 			targetFolder = "../business/${projectRootName}-business/" 
+ 			
+ 			sourceMainFolder = "../business/${projectRootName}-business/src/main/java/com/megabank/tw/business/sample"
+ 			sourceTestFolder = "../business/${projectRootName}-business/src/test/java/com/megabank/tw/business/sample"
+ 			targetMainFolder = "../business/${projectRootName}-business/src/main/java/com/megabank/tw/business/${packageName}"
+ 			targetTestFolder = "../business/${projectRootName}-business/src/test/java/com/megabank/tw/business/${packageName}"
+ 			
+ 		}
+ 	}
+ 	
+ 	
+ 	
+	// gradle buildBusinessProject -PprojectRootName=xxx-xxx-xxx -PprojectName=zzz -PpackageName=yyyy -Pport=1234
+	task buildBusinessProject ( dependsOn: 'initBuildBusinessProject') {
+		doLast{
+			copy {
+			
+				from (sourceFolder){
+				}
+				
+				into targetFolder
+				// replace FileContent
+				filter(ReplaceTokens, tokens: [ProjectRootName: projectRootName, Project: projectName,  PackageName: packageName, Port: port ])
+				
+				// replace FileName
+				rename { String fileName ->
+					if (fileName.startsWith('Sample')){
+						fileName.replace('Sample',"${projectName}".capitalize())
+					}
+				}
+			}
+			
+			// move folder to correct package
+			file(sourceMainFolder).renameTo(file(targetMainFolder))
+			file(sourceTestFolder).renameTo(file(targetTestFolder))
+		}
+	}
+	
