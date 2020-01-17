@@ -10,7 +10,6 @@
     <project name="VoiceTube_F2E"></project>
     <project name="Resume_ReactJs"></project>
     <project name="typescript-demo"></project>
-    <project name="spring-cloud--all"></project>
 
     <!-- spring-cloud -->
     <project name="spring-boot-eureka-client" path="spring-cloud/spring-boot-eureka-client" group="spring-cloud"></project>
