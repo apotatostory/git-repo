@@ -19,5 +19,4 @@
     <project name="spring-boot-mongoDB" path="spring-cloud/spring-boot-mongoDB" group="spring-cloud"></project>
     <project name="spring-boot-service-ribbon" path="spring-cloud/spring-boot-service-ribbon" group="spring-cloud"></project>
     <project name="spring-boot-service-zuul" path="spring-cloud/spring-boot-service-zuul" group="spring-cloud"></project>
-
 </manifest>
